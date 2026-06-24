@@ -33,6 +33,9 @@ export default function Sidebar() {
         <NavLink to="/bulk-add" className={({ isActive }) => `sidebar-link${isActive ? ' active' : ''}`}>
           <DatabaseZap size={18} /> Bulk Add
         </NavLink>
+        <button onClick={handleLogout} className="sidebar-link mobile-only-logout">
+          <LogOut size={18} /> Sign out
+        </button>
       </nav>
 
       <div className="sidebar-footer">

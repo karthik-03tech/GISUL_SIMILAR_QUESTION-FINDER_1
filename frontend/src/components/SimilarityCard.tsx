@@ -49,7 +49,7 @@ export default function SimilarityCard({ question, topicColor = '#6b7280', onCop
         {question.question_text}
       </p>
 
-      <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+      <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 10 }}>
         <TopicBadge name={question.topic} color={topicColor} />
         <span style={{ color: 'var(--muted)', fontSize: 13, fontStyle: 'italic', flex: 1 }}>
           {question.explanation}
