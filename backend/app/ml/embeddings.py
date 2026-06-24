@@ -5,7 +5,7 @@ import re
 import time
 from fastapi import HTTPException
 
-API_URL = f"https://api-inference.huggingface.co/pipeline/feature-extraction/sentence-transformers/{settings.EMBEDDING_MODEL}"
+API_URL = f"https://router.huggingface.co/hf-inference/models/sentence-transformers/{settings.EMBEDDING_MODEL}/pipeline/feature-extraction"
 
 def _get_headers():
     token = settings.HF_API_TOKEN
