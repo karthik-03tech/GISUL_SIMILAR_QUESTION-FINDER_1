@@ -17,6 +17,9 @@ def _normalise(text: str) -> str:
     """Strip and collapse consecutive spaces."""
     return re.sub(r"\s+", " ", text.strip())
 
+import urllib.request
+import json
+
 def embed_text(text: str) -> list[float]:
     """Embed a single text string, returning a 384-dim list[float]."""
     return embed_batch([text])[0]
@@ -25,23 +28,31 @@ def embed_batch(texts: list[str]) -> list[list[float]]:
     """Single forward pass for multiple texts via HF Inference API."""
     normalised = [_normalise(t) for t in texts]
     headers = _get_headers()
+    headers['Content-Type'] = 'application/json'
     
-    # Retry logic since HF API can sometimes be "loading model" or rate limit
+    data = json.dumps({"inputs": normalised}).encode('utf-8')
+    req = urllib.request.Request(API_URL, data=data, headers=headers, method='POST')
+    
     max_retries = 3
     for attempt in range(max_retries):
         try:
-            response = httpx.post(API_URL, headers=headers, json={"inputs": normalised}, timeout=30.0)
-            response.raise_for_status()
-            return response.json()
-        except httpx.HTTPStatusError as e:
-            # If the model is currently loading, HF might return 503
-            if e.response.status_code == 503 and attempt < max_retries - 1:
+            with urllib.request.urlopen(req, timeout=30.0) as response:
+                result = json.loads(response.read().decode('utf-8'))
+                if isinstance(result, dict) and "error" in result:
+                    if "loading" in result.get("error", "").lower() and attempt < max_retries - 1:
+                        time.sleep(15)
+                        continue
+                    raise ValueError(result["error"])
+                return result
+        except urllib.error.HTTPError as e:
+            if e.code == 503 and attempt < max_retries - 1:
                 time.sleep(15) # Wait for model to load
                 continue
-            print(f"HF API Error: {e.response.text}")
+            body = e.read().decode('utf-8')
+            print(f"HF API Error {e.code}: {body}")
             raise HTTPException(status_code=500, detail="Error generating embeddings via Hugging Face API.")
         except Exception as e:
-            print(f"Embedding error: {e}")
+            print(f"Embedding error (Attempt {attempt+1}/{max_retries}): {e.__class__.__name__}: {e}")
             if attempt < max_retries - 1:
                 time.sleep(2)
                 continue
