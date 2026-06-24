@@ -7,8 +7,6 @@ pydantic-settings
 pydantic[email]
 passlib[bcrypt]
 python-jose[cryptography]
-sentence-transformers
-scikit-learn
 numpy
 qdrant-client
 slowapi
