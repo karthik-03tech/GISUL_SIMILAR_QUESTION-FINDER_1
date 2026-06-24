@@ -1,0 +1,73 @@
+# Topic seed questions dictionary for initializing centroids
+
+TOPIC_SEED_EXAMPLES: dict[str, list[str]] = {
+    "Biology": [
+        "What is the function of the mitochondria in eukaryotic cells?",
+        "Explain the process of photosynthesis in plants and its light-dependent reactions.",
+        "How do DNA replication enzymes like helicase and polymerase function?",
+        "What is the difference between mitosis and meiosis division stages?",
+        "Describe the structure and purpose of the cell membrane lipid bilayer.",
+        "How does natural selection drive the evolution of species populations?",
+        "What is the role of ribosomes in protein translation and synthesis?",
+        "Explain the circulatory path of blood through the human heart chambers.",
+    ],
+    "Physics": [
+        "State Newton's three laws of motion and provide examples of each.",
+        "Explain the theory of general relativity and how gravity warps spacetime.",
+        "What is the difference between kinetic energy and potential energy?",
+        "How does electromagnetic induction generate electric current in a coil?",
+        "Describe the wave-particle duality of light and the double-slit experiment.",
+        "What is thermodynamic equilibrium and the second law of thermodynamics?",
+        "How do you calculate the gravitational force between two planets?",
+        "Explain the principle of conservation of linear momentum in collisions.",
+    ],
+    "Chemistry": [
+        "What is the periodic table trend for electronegativity across a period?",
+        "Explain the difference between covalent, ionic, and metallic chemical bonds.",
+        "How do you balance a chemical equation for the combustion of methane?",
+        "What is the definition of pH and how do acid-base buffers work?",
+        "Describe the molecular geometry of water and why it is a polar solvent.",
+        "What is Avogadro's number and how is it used to calculate moles?",
+        "Explain Le Chatelier's principle and how temperature affects equilibrium.",
+        "What are the major functional groups in organic chemistry like alcohols and ketones?",
+    ],
+    "Math": [
+        "How do you find the derivative of a polynomial function using the power rule?",
+        "What is the Pythagorean theorem and how is it applied to right triangles?",
+        "Solve the system of linear equations using matrix row reduction.",
+        "What is the definition of a limit in calculus and how is it evaluated?",
+        "How do you integrate a trigonometric function using substitution?",
+        "Explain the difference between rational and irrational numbers.",
+        "How do you calculate the probability of independent events occurring?",
+        "What is the formula for finding the roots of a quadratic equation?",
+    ],
+    "Computer Science": [
+        "What is the difference between a stack and a queue data structure?",
+        "Explain how the binary search algorithm achieves O(log n) time complexity.",
+        "What is object-oriented programming and its core principles like inheritance?",
+        "How does a relational database join two tables using primary and foreign keys?",
+        "Describe the TCP/IP handshake protocol and how data packets are routed.",
+        "What is the role of an operating system kernel in process management?",
+        "Explain the difference between compiler and interpreter execution.",
+        "How does recursion work and what is a base case in a recursive function?",
+    ],
+    "History": [
+        "What were the primary causes and consequences of the French Revolution?",
+        "Explain the significance of the Magna Carta signed in 1215.",
+        "Describe the major events of the Cold War between the USA and USSR.",
+        "What factors led to the fall of the Western Roman Empire in the 5th century?",
+        "Explain the impact of the Industrial Revolution on urbanization in Europe.",
+        "What was the Silk Road and how did it influence trade between East and West?",
+        "Describe the main reasons for the American Civil War and the Emancipation Proclamation.",
+        "What was the historical significance of the Treaty of Versailles in 1919?",
+    ],
+}
+
+TOPIC_COLORS: dict[str, str] = {
+    "Biology": "#22c55e",
+    "Physics": "#3b82f6",
+    "Chemistry": "#f59e0b",
+    "Math": "#8b5cf6",
+    "Computer Science": "#06b6d4",
+    "History": "#f97316",
+}
